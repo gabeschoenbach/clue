@@ -56,13 +56,7 @@ class Player():
     def _remove_card_from_possible(self, card):
         """ Remove card from each subset in the possible cards list, if it exists. """
         for subset in self.possible_cards_list:
-            subset.discard(card) # TODO: Are we sure this removes in place?
-        # new_possible_cards_list = []
-        # for subset in self.possible_cards_list:
-        #     if card in subset:
-        #         subset.discard(card)
-        #     new_possible_cards_list.append(subset)
-        # self.possible_cards_list = new_possible_cards_list
+            subset.discard(card)
         return
     
     def _check_for_held_cards(self):

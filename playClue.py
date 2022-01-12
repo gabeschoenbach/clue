@@ -2,7 +2,6 @@ from player import Player
 from game import Game
 import os
 
-
 class GamePlay():
     def __init__(self, trialGame):
         rooms = ["Hall", "Ballroom", "Conservatory", "Library", "Billiard-Room", 
@@ -30,7 +29,8 @@ class GamePlay():
         print("When inputting cards, please be sure to spell them as listed above.\n")
         
         my_name = self._get_input("What is your name? ")
-        my_cards = self._get_input("What cards do you have? Please use commas to separate each card: ", people + weapons + rooms)
+        my_cards = self._get_input("What cards do you have? Please use commas to separate each card: ", 
+                                    people + weapons + rooms)
         other_players = self._get_input("Starting from your left, who are you playing with? ")
         
         starting_dict = {}
@@ -60,7 +60,8 @@ class GamePlay():
                     break
             else:
                 result = stdin.strip()
-                if (result != "" and acceptable_inputs and result not in acceptable_inputs) or (result == "" and require_answer):
+                if (result != "" and acceptable_inputs and result not in acceptable_inputs) or \
+                    (result == "" and require_answer):
                     print(spelling_error)
                     continue
                 else:
@@ -74,16 +75,26 @@ class GamePlay():
         
         pronoun = "you" if my_turn else "they"
         prompt = " (Please remember to separate with commas)" if helpful else ""
-        suggested_cards = self._get_input(f"What did {pronoun} suggest?{prompt} ", self.gameInstance.all_cards)
+        suggested_cards = self._get_input(f"What did {pronoun} suggest?{prompt} ", 
+                                          self.gameInstance.all_cards)
         prompt = " (Press enter if no one)" if helpful else ""
         passing_player_names = self._get_input(f"Who had nothing?{prompt} ", players_names)
-        showing_player_name = self._get_input(f"Who finally showed something?{prompt} ", players_names)
+        showing_player_name = self._get_input(f"Who finally showed something?{prompt} ", 
+                                              players_names)
         
         if my_turn:
-            card = self._get_input("What did they show you? ", self.gameInstance.all_cards, require_answer=True)
-            self.gameInstance.turn(player_name, suggested_cards, passing_player_names, showing_player_name, card=card)
+            card = self._get_input("What did they show you? ", self.gameInstance.all_cards, 
+                                   require_answer=True)
+            self.gameInstance.turn(player_name, 
+                                   suggested_cards, 
+                                   passing_player_names, 
+                                   showing_player_name, 
+                                   card=card)
         else:
-            self.gameInstance.turn(player_name, suggested_cards, passing_player_names, showing_player_name)
+            self.gameInstance.turn(player_name, 
+                                   suggested_cards, 
+                                   passing_player_names, 
+                                   showing_player_name)
 
         self._clear_console()
         self.gameInstance.check_status()

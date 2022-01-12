@@ -40,7 +40,8 @@ class Game():
             for my_card in my_player.cards_held:
                 player.impossible_cards.add(my_card)
         self.players.append(my_player)
-        if sum([player.num_cards for player in self.players]) != len(self.rooms) + len(self.weapons) + len(self.people) - 3:
+        if sum([player.num_cards for player in self.players]) != len(self.rooms) + \
+                len(self.weapons) + len(self.people) - 3:
             raise ArithmeticError(f"The numbers of cards for each player seems incorrect.")
             
         self._eliminate_guesses()
@@ -127,7 +128,11 @@ class Game():
             showing_player.reveal_to_other(suggested_cards)
         self._realign_players()
         self._eliminate_guesses()
-        self._update_turns_file(player_name, suggested_cards, passing_player_names, showing_player_name, card)
+        self._update_turns_file(player_name, 
+                                suggested_cards, 
+                                passing_player_names, 
+                                showing_player_name, 
+                                card)
         self.turn_number += 1
         return
     
