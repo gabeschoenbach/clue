@@ -101,7 +101,7 @@ class GamePlay():
         return
 
 if __name__=="__main__":
-    gameplay = GamePlay(trialGame=True)
+    gameplay = GamePlay(trialGame=False)
     gameplay.turn(helpful=True)
     while True:
         gameplay.turn(helpful=False)
